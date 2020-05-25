@@ -1,0 +1,29 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "eslint",
+    "html",
+    "javascript",
+    "json",
+    "jsx",
+    "markdown",
+    "typescript",
+    "vue",
+    "yaml"
+  ],
+  "explorer.openAction.strategy": "select",
+  "explorer.file.showHiddenFiles": true,
+  "explorer.width": 30,
+  "explorer.previewAction.onHover": false,
+  "explorer.keyMappings": {
+    "<cr>": [
+      "expandable?",
+      "expand",
+      "open"
+    ],
+    "v": "open:vsplit"
+  },
+  "snippets.ultisnips.directories": [
+    "UltiSnips"
+  ]
+}

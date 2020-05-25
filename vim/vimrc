@@ -1,0 +1,255 @@
+call plug#begin('~/.vim/plugged')
+
+" PLUGINS
+Plug 'airblade/vim-gitgutter'
+Plug 'ggreer/the_silver_searcher'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-plug'
+Plug 'mattn/emmet-vim'
+Plug 'mattn/webapi-vim'
+Plug 'mileszs/ack.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+
+" APPEARANCE AND THEMES 
+Plug 'arcticicestudio/nord-vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'joshdick/onedark.vim'
+Plug 'miyakogi/seiya.vim'
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/xoria256.vim'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+call plug#end()
+
+" AUTO INSTALL
+autocmd VimEnter *
+   \   if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
+   \ |   PlugInstall --sync | q
+   \ | endif
+
+" CONFIG
+syntax on
+filetype plugin on
+filetype indent on
+set autoindent
+set backspace=indent,eol,start
+set cmdheight=2
+set cindent
+set colorcolumn=+1
+set expandtab
+set encoding=utf-8
+set fileformats=unix,dos,mac
+set foldcolumn=2
+set hidden
+set nohlsearch
+set incsearch
+set lazyredraw
+set list
+set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
+set magic
+set mouse=a
+set nobackup
+set noerrorbells
+set nospell spelllang=en_us
+set noswapfile
+set novisualbell
+set nowb
+set nowrap
+set nowritebackup
+set number
+set path+=$PWD/**
+set rnu
+set scrolloff=10
+set signcolumn=yes
+set shiftwidth=2
+set showmatch
+set shortmess+=c
+set softtabstop=0
+set tabstop=2
+set textwidth=999
+set tm=500
+set updatetime=300
+set vb t_vb=
+set wrapmargin=0
+set wildmenu
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
+colorscheme dracula
+set background=dark
+scriptencoding utf-8
+
+" AIRLINE
+let g:airline_powerline_fonts=1
+
+" SPLIT NAVIGATION
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" TOGGLE HIGHLIGHT SEARCH
+nnoremap <F4> :set hlsearch!<CR>
+
+" ALACRITTY
+" TRANSPARENCY FIX
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
+"
+" IF NONE OF THE DEFAULT MARKERS (.git .hg .svn .bzr _darcs) are present in a project,
+" YOU CAN DEFINE ADDITIONAL ONES WITH
+" g:ctrlp_root_markers
+" let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']
+let g:fzf_preview_window = 'right:60%'
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
+
+" FZF FILES WITH PREVIEW
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, 
+    \ fzf#vim#with_preview('right:60%'), 
+    \ <bang>0)
+
+" FZF AG WITH PREVIEW
+command! -bang -nargs=* Ag
+   \ call fzf#vim#ag(<q-args>,
+   \ fzf#vim#with_preview('right:60%'), 
+   \ <bang>0)
+
+" THIS IS THE DEFAULT EXTRA KEY BINDINGS
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+let g:fzf_buffers_jump = 1
+
+" HIDE STATUSLINE
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+" CUSTOM STATUSLINE
+function! s:fzf_statusline()
+    highlight fzf1 ctermfg=161 ctermbg=251
+    highlight fzf2 ctermfg=23 ctermbg=251
+    highlight fzf3 ctermfg=237 ctermbg=251
+    setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+  endfunction
+
+  autocmd! User FzfStatusLine call <SID>fzf_statusline()
+
+map <C-A> :Ag<cr>
+map <C-F> :Files<cr>
+map <C-G> :GFiles?<cr>
+"map <C-I> :BLines<cr>
+
+" CLOSE SHORTCUT
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"
+" COC 
+" USE TAB FOR TRIGGER COMPLETION WITH CHARACTERS AHEAD AND NAVIGATE.
+" NOTE: USE COMMAND ':verbose imap <tab>' TO MAKE SURE TAB IS NOT MAPPED BY
+" OTHER PLUGIN BEFORE PUTTING THIS INTO YOUR CONFIG.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+"
+" GOTO CODE NAVIGATION.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+"
+:nmap <space>e :CocCommand explorer<CR>
+" EXPLORER
+nmap <space>e :CocCommand explorer<CR>
+nmap <space>f :CocCommand explorer --preset floating<CR>
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+"
+" USE PRESET ARGUMENT TO OPEN IT
+nmap <space>ed :CocCommand explorer --preset .vim<CR>
+"
+" USE K TO SHOW DOCUMENTATION IN PREVIEW WINDOW.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+"
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+" HIGHLIGHT THE SYMBOL AND ITS REFERENCES WHEN HOLDING THE CURSOR.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" EMMET
+" ENABLE EMMET ONLY IN HTML/CSS FILES
+let g:user_emmet_mode='n'
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+
+" NERDTREE
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
+" OPEN SHORTCUT
+map <C-n> :NERDTreeToggle<CR>
+
+" SHOW HIDDEN FILES
+let NERDTreeShowHidden=1
+let g:NERDTreeMouseMode = 2
+let g:NERDTreeWinSize = 40
+let g:NRDTreeMinimalUI=1
+let g:NERDTreeIgnore=['\v[\/]\.(git|hg|svn)$']
+
+" SIEYA
+" CLEAR AND MAKE TRANSPARENT BACKGROUND COLOR IN (TRANSPARENT) TERMINAL
+let g:seiya_auto_enable=1
+
+" INDENT NEXT LINE LIKE NORMAL IDE
+imap <C-Return> <CR><CR><C-o>k<Tab>
+
+" CMD+X / CMD+C COPY TO CLIPBOARD
+vmap <C-x> :!pbcopy<CR>
+vmap <C-c> :w !pbcopy<CR><CR>
+
+" GOTO MATCHING TAG/BRACKETS
+runtime macros/matchit.vim
+"
+" JUMP MATCHING OPENING/CLOSING
+noremap % v%
+
+" DISABLE ARROW KEYS AND USE UP AND DOWN FOR MOVING SELECTED / LINE OF CODES
+no  <down>  mz:m+<CR>`z
+no  <left>  <Nop>
+no  <right> <Nop>
+no  <up>    mz:m-2<CR>`z
+ino <down>  <Esc><Esc>mz:m+<CR>`z
+ino <left>  <Nop>
+ino <right> <Nop>
+ino <up>    <Esc><Esc>mz:m-2<CR>`z
+vno <down>  :m'>+<CR>`<my`>mzgv`yo`z
+vno <left>  <Nop>
+vno <right> <Nop>
+vno <up>    :m'<-2<CR>`>my`<mzgv`yo`z
+
