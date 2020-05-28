@@ -13,6 +13,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'justinmk/vim-sneak'
+Plug 'tomtom/tcomment_vim'
 
 " APPEARANCE AND THEMES 
 Plug 'arcticicestudio/nord-vim'
@@ -253,3 +255,5 @@ vno <left>  <Nop>
 vno <right> <Nop>
 vno <up>    :m'<-2<CR>`>my`<mzgv`yo`z
 
+" SNEAK
+let g:sneak#label=1
