@@ -1,3 +1,4 @@
+
 ###t-ns-completion-start-###
 if [ -f /Users/regene/.tnsrc ]; then 
     source /Users/regene/.tnsrc 
@@ -7,8 +8,26 @@ fi
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 autoload -U compinit 
 
-# LOAD CUSTOM SCRIPTS
+### ZPLUG
+if [[ ! -d ~/.zplug ]];then
+  git clone https://github.com/zplug/zplug ~/.zplug
+fi
+source ~/.zplug/init.zsh
+
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+zplug load
+###
+
+### LOAD CUSTOM SCRIPTS
 for f in ~/.zsh_functions/[0-9]*.(sh|zsh)
 do
 	source "$f"
 done
+
+eval "$(lua ~/.zplug/repos/skywind3000/z.lua/z.lua --init zsh)"

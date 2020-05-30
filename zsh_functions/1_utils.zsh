@@ -30,3 +30,4 @@ fzf-git-checkout() {
           git checkout $branch;
   fi
 }
+

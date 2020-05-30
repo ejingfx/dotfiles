@@ -1,0 +1,20 @@
+
+# --- Sourcetree Generated ---
+Host regene-Bitbucket
+	HostName bitbucket.org
+	User regene
+	PreferredAuthentications publickey
+	IdentityFile /Users/ejingfx/.ssh/regene-Bitbucket
+	UseKeychain yes
+	AddKeysToAgent yes
+# ----------------------------
+
+# --- Sourcetree Generated ---
+Host ejingfx-Bitbucket
+	HostName bitbucket.org
+	User ejingfx
+	PreferredAuthentications publickey
+	IdentityFile /Users/ejingfx/.ssh/ejingfx-Bitbucket
+	UseKeychain yes
+	AddKeysToAgent yes
+# ----------------------------
