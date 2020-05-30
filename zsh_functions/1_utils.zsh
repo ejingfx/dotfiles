@@ -1,5 +1,15 @@
-#compdef fzf-git-checkout
+# COMPDEF FZF-GIT-BRANCH
+fzf-git-branch() {
+  git rev-parse HEAD > /dev/null 2>&1 || return
 
+    git branch --color=always --all --sort=-committerdate |
+    grep -v HEAD |
+    fzf --height 40% --ansi --no-multi --preview-window right:60% \
+    --preview 'git log -n 50 --color=always --date=short --pretty="format:%C(auto)%cd %h%d %s" $(sed "s/.* //" <<< {})' |
+    sed "s/.* //"
+}
+
+# COMPDEF FZF-GIT-BRANCH
 fzf-git-checkout() {
   git rev-parse HEAD > /dev/null 2>&1 || return
 

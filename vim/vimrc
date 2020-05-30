@@ -6,16 +6,16 @@ Plug 'ggreer/the_silver_searcher'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-plug'
+Plug 'justinmk/vim-sneak'
 Plug 'mattn/emmet-vim'
 Plug 'mattn/webapi-vim'
 Plug 'mileszs/ack.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'justinmk/vim-sneak'
 Plug 'tomtom/tcomment_vim'
-
 " APPEARANCE AND THEMES 
 Plug 'arcticicestudio/nord-vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -30,12 +30,6 @@ Plug 'vim-scripts/xoria256.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 call plug#end()
-
-" AUTO INSTALL
-autocmd VimEnter *
-   \   if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
-   \ |   PlugInstall --sync | q
-   \ | endif
 
 " CONFIG
 syntax on
@@ -87,6 +81,9 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 colorscheme dracula
 set background=dark
 scriptencoding utf-8
+
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
 
 " AIRLINE
 let g:airline_powerline_fonts=1
