@@ -1,5 +1,4 @@
-
-###t-ns-completion-start-###
+###-tns-completion-start-###
 if [ -f /Users/regene/.tnsrc ]; then 
     source /Users/regene/.tnsrc 
 fi

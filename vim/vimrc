@@ -16,6 +16,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tomtom/tcomment_vim'
+
 " APPEARANCE AND THEMES 
 Plug 'arcticicestudio/nord-vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -78,6 +79,8 @@ set wrapmargin=0
 set wildmenu
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
+let mapleader=" "
+let g:dracula_italic=0
 colorscheme dracula
 set background=dark
 scriptencoding utf-8
@@ -94,6 +97,13 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" TABS
+nnoremap tn :tabnew<Space>
+nnoremap tk :tabnext<CR>
+nnoremap tj :tabprev<CR>
+nnoremap th :tabfirst<CR>
+nnoremap tl :tablast<CR>
+
 " TOGGLE HIGHLIGHT SEARCH
 nnoremap <F4> :set hlsearch!<CR>
 
@@ -102,31 +112,30 @@ nnoremap <F4> :set hlsearch!<CR>
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 "
-" IF NONE OF THE DEFAULT MARKERS (.git .hg .svn .bzr _darcs) are present in a project,
-" YOU CAN DEFINE ADDITIONAL ONES WITH
-" g:ctrlp_root_markers
-" let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']
 let g:fzf_preview_window = 'right:60%'
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
 
 " FZF FILES WITH PREVIEW
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, 
-    \ fzf#vim#with_preview('right:60%'), 
+    \ fzf#vim#with_preview(), 
     \ <bang>0)
 
 " FZF AG WITH PREVIEW
+" DEFAULT OPTIONS --nogroup --column --color
+let s:ag_options = ' --one-device --skip-vcs-ignores --smart-case '
+
 command! -bang -nargs=* Ag
    \ call fzf#vim#ag(<q-args>,
-   \ fzf#vim#with_preview('right:60%'), 
+   \ fzf#vim#with_preview(), 
    \ <bang>0)
-
+"
 " THIS IS THE DEFAULT EXTRA KEY BINDINGS
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
-let g:fzf_buffers_jump = 1
+let g:fzf_buffers_jump=1
 
 " HIDE STATUSLINE
 autocmd! FileType fzf set laststatus=0 noshowmode noruler
@@ -142,14 +151,12 @@ function! s:fzf_statusline()
 
   autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
-map <C-A> :Ag<cr>
-map <C-F> :Files<cr>
-map <C-G> :GFiles?<cr>
-"map <C-I> :BLines<cr>
+" FUNCTION KEYBINDINGS
+nmap <C-F> :Files<cr>
+nmap <C-I> :Ag<cr>
+vmap <C-G> <Esc><Esc>:GFiles?<cr>
+inoremap <C-F> <Esc><Esc>:BLines<cr>
 
-" CLOSE SHORTCUT
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-"
 " COC 
 " USE TAB FOR TRIGGER COMPLETION WITH CHARACTERS AHEAD AND NAVIGATE.
 " NOTE: USE COMMAND ':verbose imap <tab>' TO MAKE SURE TAB IS NOT MAPPED BY
@@ -199,7 +206,8 @@ let g:user_emmet_mode='n'
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 
-" NERDTREE
+
+" NERDTREE VIM-DEVICONS
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
@@ -212,7 +220,9 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 " OPEN SHORTCUT
-map <C-n> :NERDTreeToggle<CR>
+
+" NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " SHOW HIDDEN FILES
 let NERDTreeShowHidden=1
@@ -220,6 +230,8 @@ let g:NERDTreeMouseMode = 2
 let g:NERDTreeWinSize = 40
 let g:NRDTreeMinimalUI=1
 let g:NERDTreeIgnore=['\v[\/]\.(git|hg|svn)$']
+
+map <C-n> :NERDTreeToggle<CR>
 
 " SIEYA
 " CLEAR AND MAKE TRANSPARENT BACKGROUND COLOR IN (TRANSPARENT) TERMINAL
@@ -254,3 +266,9 @@ vno <up>    :m'<-2<CR>`>my`<mzgv`yo`z
 
 " SNEAK
 let g:sneak#label=1
+
+" VIM FUGITIVE
+nmap <Leader>gs :G<CR>
+nmap <Leader>gc :Gcommit<CR>
+nmap <Leader>gj :diffget //3<CR>
+nmap <Leader>gf :diffget //2<CR>
