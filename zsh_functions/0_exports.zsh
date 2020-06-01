@@ -6,3 +6,5 @@ export FZF_DEFAULT_OPTS='--height 50% --preview-window right:60% --layout=revers
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g'
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+export MYVIMRC=~/.vimrc

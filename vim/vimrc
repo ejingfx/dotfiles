@@ -267,7 +267,7 @@ vno <up>    :m'<-2<CR>`>my`<mzgv`yo`z
 " SNEAK
 let g:sneak#label=1
 
-" VIM FUGITIVE
+nnoremap <Leader>ev :tabnew $MYVIMRC<CR>
 nmap <Leader>gs :G<CR>
 nmap <Leader>gc :Gcommit<CR>
 nmap <Leader>gj :diffget //3<CR>
