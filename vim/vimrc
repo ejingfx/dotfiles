@@ -270,5 +270,6 @@ let g:sneak#label=1
 nnoremap <Leader>ev :tabnew $MYVIMRC<CR>
 nmap <Leader>gs :G<CR>
 nmap <Leader>gc :Gcommit<CR>
+nmap <Leader>gp :Gpush<CR>
 nmap <Leader>gj :diffget //3<CR>
 nmap <Leader>gf :diffget //2<CR>
