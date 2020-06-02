@@ -1,0 +1,42 @@
+{
+  "useTaobaoRegistry": false,
+  "packageManager": "npm",
+  "latestVersion": "4.4.1",
+  "lastChecked": 1591106485789,
+  "presets": {
+    "basic-vue-template": {
+      "useConfigFiles": false,
+      "plugins": {
+        "@vue/cli-plugin-babel": {},
+        "@vue/cli-plugin-eslint": {
+          "config": "standard",
+          "lintOn": [
+            "save"
+          ]
+        },
+        "@vue/cli-plugin-unit-jest": {},
+        "@vue/cli-plugin-e2e-nightwatch": {}
+      },
+      "router": true,
+      "routerHistoryMode": true,
+      "vuex": true,
+      "cssPreprocessor": "node-sass"
+    },
+    "basic-vue-boiler": {
+      "useConfigFiles": true,
+      "plugins": {
+        "@vue/cli-plugin-babel": {},
+        "@vue/cli-plugin-eslint": {
+          "config": "standard",
+          "lintOn": [
+            "save"
+          ]
+        }
+      },
+      "router": true,
+      "routerHistoryMode": true,
+      "vuex": true,
+      "cssPreprocessor": "node-sass"
+    }
+  }
+}
