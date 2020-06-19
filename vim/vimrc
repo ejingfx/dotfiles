@@ -103,6 +103,7 @@ nnoremap tk :tabnext<CR>
 nnoremap tj :tabprev<CR>
 nnoremap th :tabfirst<CR>
 nnoremap tl :tablast<CR>
+nnoremap tc :tabclose<CR>
 
 " TOGGLE HIGHLIGHT SEARCH
 nnoremap <F4> :set hlsearch!<CR>
