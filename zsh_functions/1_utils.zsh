@@ -9,7 +9,7 @@ fzf-git-branch() {
     sed "s/.* //"
 }
 
-# COMPDEF FZF-GIT-BRANCH
+# COMPDEF FZF-GIT-CHECKOUT
 fzf-git-checkout() {
   git rev-parse HEAD > /dev/null 2>&1 || return
 

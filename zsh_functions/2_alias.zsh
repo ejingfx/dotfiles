@@ -12,8 +12,8 @@ alias sov='source ~/.vimrc'
 alias soz='source ~/.zshrc'
 
 # NPM
-alias ns='npm start'
-alias nv='npm run serve'
+alias nst='npm start'
+alias nsv='npm run serve'
 
 # SSH
 alias hosh='ssh-home'
