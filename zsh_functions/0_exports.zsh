@@ -9,4 +9,4 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH="$PATH:`yarn global bin`"
 
 export MYVIMRC=~/.vimrc
-export PROMPT='%n [%1~] %#  '
+export PROMPT='[%n: %1~] %#  '
