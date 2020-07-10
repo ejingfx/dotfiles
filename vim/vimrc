@@ -201,6 +201,34 @@ endfunction
 " HIGHLIGHT THE SYMBOL AND ITS REFERENCES WHEN HOLDING THE CURSOR.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+" GLOBAL EXTENSIONS
+let g:coc_global_extions = [
+\ 'coc-pairs',
+\ 'coc-explorer',
+\ 'coc-git',
+\ 'coc-highlight',
+\ 'coc-template',
+\ 'coc-snippets',
+\ 'coc-ultisnips',
+\ 'coc-lists',
+\ 'coc-prettier',
+\ 'coc-eslint',
+\ 'coc-tslint',
+\ 'coc-tslint-plugin',
+\ 'coc-sh',
+\ 'coc-vimlsp',
+\ 'coc-emmet',
+\ 'coc-phpls',
+\ 'coc-markdownlint',
+\ 'coc-json',
+\ 'coc-svg',
+\ 'coc-html',
+\ 'coc-tsserver',
+\ 'coc-vetur',
+\ 'coc-css',
+\ 'coc-yaml'
+\ ]
+
 " EMMET
 " ENABLE EMMET ONLY IN HTML/CSS FILES
 let g:user_emmet_mode='n'
