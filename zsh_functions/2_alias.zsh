@@ -1,3 +1,8 @@
+# BREW (MONGODB)
+alias bkm='brew services stop mongodb-community'
+alias bsm='brew services start mongodb-community'
+alias brm='brew services restart mongodb-community'
+
 # FZF GIT
 alias fgb='fzf-git-branch'
 alias fgco='fzf-git-checkout'
@@ -11,9 +16,10 @@ alias dcr='docker rm -f $(docker ps -aq)'
 alias sov='source ~/.vimrc'
 alias soz='source ~/.zshrc'
 
+
 # NPM
-alias ns='npm start'
-alias nv='npm run serve'
+alias nst='npm start'
+alias nsv='npm run serve'
 
 # SSH
 alias hosh='ssh-home'
