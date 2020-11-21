@@ -16,7 +16,6 @@ ln -s $HOME/.dotfiles/zsh_functions $HOME/.zsh_functions
 ln -s $HOME/.dotfiles/tmux/tmux.conf $HOME/.tmux.conf
 ln -s $HOME/.dotfiles/tmux/tmuxline.conf $HOME/.tmuxline.conf
 ln -s $HOME/.dotfiles/tmux/tmux-powerlinerc $HOME/.tmux-powerlinerc
-ln -s $HOME/.dotfiles/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 
 echo 'Symlinking completed!'
 
@@ -27,4 +26,4 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 vim +PlugInstall +q
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-echo "All Done! \nCustomize your local zsh config by editing ~/.dotfiles/local/zshrc"
+echo "All Done! \nCustomize your local zsh config by editing ~/.dotfiles/zshrc"
