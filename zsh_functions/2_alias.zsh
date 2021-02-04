@@ -1,27 +1,32 @@
 # BREW (MONGODB)
-alias bkm='brew services stop mongodb-community'
-alias bsm='brew services start mongodb-community'
-alias brm='brew services restart mongodb-community'
+alias bstop='brew services stop mongodb-community'
+alias bstart='brew services start mongodb-community'
+alias brestart='brew services restart mongodb-community'
 
 # FZF GIT
-alias fgbr='fzf-git-branch'
-alias fgco='fzf-git-checkout'
+alias fbranch='fzf-git-branch'
+alias fcheck='fzf-git-checkout'
 
 # DOCKER
-alias dcb='docker-compose build'
-alias dcd='docker-compose down'
-alias dcu='docker-compose up'
-alias dcr='docker rm -f $(docker ps -aq)'
+alias dbuild='docker-compose build'
+alias ddown='docker-compose down'
+alias dup='docker-compose up'
+alias dremove='docker rm -f $(docker ps -aq)'
 
 # DOTFILES
 alias sov='source ~/.vimrc'
 alias soz='source ~/.zshrc'
 
+# GIT
+alias gfetch='git fetch'
+alias gpull='git pull'
+alias gpush='git push'
+alias gstat='git status'
 
 # NPM
-alias nsd='npm run dev'
-alias nst='npm start'
-alias nsv='npm run serve'
+alias ndev='npm run dev'
+alias nstart='npm start'
+alias nserve='npm run serve'
 
 # SYSTEM
 alias cls='clear'

@@ -30,13 +30,3 @@ fzf-git-checkout() {
           git checkout $branch;
   fi
 }
-
-ssh-home() {
-  cat ~/.config/ssh/home >| ~/.ssh/config
-  ssh-add -K ~/.ssh/ejingfx-github
-}
-
-ssh-work() {
-  cat ~/.config/ssh/work >| ~/.ssh/config
-  ssh-add -K ~/.ssh/regene-Bitbucket
-}
