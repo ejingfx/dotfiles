@@ -22,9 +22,12 @@ alias gfetch='git fetch'
 alias gpull='git pull'
 alias gpush='git push'
 alias gstat='git status'
+alias gremote='git remote -v'
+alias glog='glo'
 
 # NPM
 alias ndev='npm run dev'
+alias nprod='npm run prod'
 alias nstart='npm start'
 alias nserve='npm run serve'
 
@@ -33,3 +36,4 @@ alias cls='clear'
 alias mv='mv -i'
 alias fixdmgon='sudo spctl --master-disable'
 alias fixdmgoff='sudo spctl --master-enable'
+alias x='exit'
